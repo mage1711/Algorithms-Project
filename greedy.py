@@ -1,6 +1,6 @@
 # Modules
-import pandas as pd 
-import datetime
+import pandas as pd # to load csv files
+import datetime # to enable us to work with time variables
 
 def prepare_data():
     # load the csv file 
@@ -26,6 +26,7 @@ Greedy Algorithm - Maximum number of events in given duration
     4. Add one to number of things
     5. Stop if the currentTime exceed the maxTime
 '''
+# input: the number of hours
 def maxNoOfEvnets(hours=1):
 
     # prepare the data for processing
