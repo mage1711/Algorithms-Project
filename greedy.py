@@ -1,19 +1,8 @@
 # Modules
 import pandas as pd # to load csv files
 import datetime # to enable us to work with time variables
+from data import prepare_data
 
-def prepare_data():
-    # load the csv file 
-    data = pd.read_csv('space.csv', index_col=0)
-
-    # convert Start_time, End_time to datetime datatype
-    data.Start_time = pd.to_datetime(data.Start_time)
-    data.End_time = pd.to_datetime(data.End_time)
-
-    # get the duration of each event in Duration column
-    data['Duration'] = data.End_time - data.Start_time
-    
-    return data
 
 '''
 Greedy Algorithm - Maximum number of events in given duration
@@ -25,6 +14,14 @@ Greedy Algorithm - Maximum number of events in given duration
     3. Add the time of the event to currentTime 
     4. Add one to number of things
     5. Stop if the currentTime exceed the maxTime
+
+- Input
+    - the solar flares events data
+    - the number of hours - the period duration in hours
+- Output
+    - Info about the events that can be fitted in the time period
+    - The number of events
+    - The percise total time taken 
 '''
 # input: the number of hours
 def maxNoOfEvnets(hours=1):
@@ -33,6 +30,7 @@ def maxNoOfEvnets(hours=1):
     data = prepare_data()
 
     # Sort the Data in increasing order by Durations
+    # Pandas sort algorithm uses QuickSort O(n^2)
     data = data.sort_values('Duration')
 
     # Setting the needed variables

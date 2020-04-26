@@ -1,23 +1,17 @@
-import csv
+# Modules
+import pandas as pd # to load csv files
+import datetime # to enable us to work with time variables
 
-data = []
+def prepare_data():
+    # load the csv file 
+    data = pd.read_csv('space.csv', index_col=0)
 
+    # convert Start_time, End_time to datetime datatype
+    data.Start_time = pd.to_datetime(data.Start_time)
+    data.End_time = pd.to_datetime(data.End_time)
 
-with open('space.csv', 'r') as csv_file:
-    csv_reader = csv.DictReader(csv_file)
-    for line in csv_reader:
-        data.append(dict.fromkeys(['Rank',
-                                   'X_class',
-                                   'Region',
-                                   'Start_time',
-                                   'Max_time',
-                                   'End_time']))
+    # get the duration of each event in Duration column
+    data['Duration'] = data.End_time - data.Start_time
+    
+    return data
 
-        data[int(line[""])]['Rank'] = line["Rank"]
-        data[int(line[""])]['X_class'] = line["X_class"]
-        data[int(line[""])]['Region'] = line["Region"]
-        data[int(line[""])]['Start_time'] = line["Start_time"]
-        data[int(line[""])]['Max_time'] = line["Max_time"]
-        data[int(line[""])]['End_time'] = line["End_time"]
-
-print(data)

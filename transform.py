@@ -1,7 +1,7 @@
 # Modules
 import pandas as pd 
 import datetime
-from greedy import prepare_data # to get the data from csv file
+from data import prepare_data # to get the data from csv file
 
 '''
 QuickSort is a Divide and Conquer algorithm
@@ -12,7 +12,6 @@ the target of the 'Partition' function: given an array and an element x
 as pivot, put x in its corret position in sorted array and put all smaller elements
 before x and all greater elements after x.
 '''
-
 def partition(arr,low,high): 
     i = ( low-1 )         # index of smaller element 
     pivot = arr[high]     # pivot 
@@ -49,8 +48,21 @@ def quickSort(arr,low,high):
         quickSort(arr, pi+1, high) 
 
 
-
-def closest_events():
+'''
+Transofrm & Conquer - The 2 closest solar flares
+- get the 2 solar flares events that are the closest to each other in the top 50 solar flares events
+- steps
+    - The function starts by getting the data and preprocess them
+    - Sorts the data using quicksort O(n^2)
+    - calculate the difference between evey two consequtive events starting times
+    - get the events with the minimum difference
+- input
+    - The solar flares events data
+- output
+    - the minimum difference between the two events
+    - the info about the two events
+'''
+def closestEvents():
     # get the data from csv file and process it
     data = prepare_data()
 
@@ -82,5 +94,5 @@ def closest_events():
             out = data[data.Start_time == arr[i-1]]
             closest_events.append(out.iloc[0])
 
-    # return the minumum difference and the info about the 2 closest events
+    # return the minimum difference and the info about the 2 closest events
     return min_difference, closest_events
