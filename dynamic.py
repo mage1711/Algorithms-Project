@@ -13,7 +13,7 @@ def _findLongestSequenceOfFlares(StartTime, days):
     # loop over each sequence
     for i in range(1, size):
         for j in range(0, i):
-           # condition checks if next element has a the day diference and a table sequence checker that checks if
+           # condition checks if next element has a the day diference and a table sequence checker
             if tableOfSequences[i] < tableOfSequences[j] + 1 and ((StartTime[i] - StartTime[j]).days) <= days:
                 tableOfSequences[i] = tableOfSequences[j]+1
 
@@ -30,9 +30,9 @@ def findLongestSequenceOfFlares(days=10):
     data = prepare_data()
     StartTime = list(data.Start_time)
     # sort array before use
-    # quickSort(StartTime, 0, len(StartTime)-1)
+    quickSort(StartTime, 0, len(StartTime)-1)
     return _findLongestSequenceOfFlares(StartTime, days)
 
 
 if __name__ == '__main__':
-    print("Length of lis is", findLongestSequenceOfFlares())
+    print("max sequence is", findLongestSequenceOfFlares())
