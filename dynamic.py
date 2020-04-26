@@ -30,7 +30,7 @@ def findLongestSequenceOfFlares(days=10):
     data = prepare_data()
     StartTime = list(data.Start_time)
     # sort array before use
-    quickSort(StartTime, 0, len(StartTime)-1)
+    # quickSort(StartTime, 0, len(StartTime)-1)
     return _findLongestSequenceOfFlares(StartTime, days)
 
 
